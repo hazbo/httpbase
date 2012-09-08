@@ -16,35 +16,11 @@
  * @license The MIT License (MIT)
 */
 
-class HttpBase
+class Make
 {
-	public $query = NULL;
-	public $make  = NULL;
-
 	public function __construct()
 	{
-		$this->setQuery();
-		$this->setMake();
-	}
-
-	private function setQuery()
-	{
-		return $this->query = new Query();
-	}
-
-	private function setMake()
-	{
-		return $this->make = new Make();
-	}
-
-	private function getQuery()
-	{
-		return $this->query;
-	}
-
-	private function getMake()
-	{
-		return $this->make;
+		
 	}
 }
 
