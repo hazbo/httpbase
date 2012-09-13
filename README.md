@@ -43,7 +43,7 @@ We can also do the same if name has been sent using a `POST` request:
 
 It even allows us to access all `POST` or `GET` variables by not passing anything through:
 
-  $getVars = $http->query->get();
+    $getVars = $http->query->get();
 
 The same will work with `POST`.
 
@@ -84,4 +84,4 @@ and can be used like so:
     });
 
 In the example above, we have make a request to Facebook, and used `print_r` to
-out put the response in the form of an array.
+out put the response in the form of an array inside of the function. The `$data` variable is passed through. This is just our response from the Http request.
