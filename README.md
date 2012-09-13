@@ -50,7 +50,7 @@ The same will work with `POST`.
 ### Making requests
 HttpBase makes good use of curl, and callbacks. Below is an example of how we could make a simple `GET` request:
 
-  $response = $http->make->get('http://graph.facebook.com/zuck');
+    $response = $http->make->get('http://graph.facebook.com/zuck');
 
 This will return:
 
