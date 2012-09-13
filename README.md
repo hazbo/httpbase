@@ -43,7 +43,7 @@ We can also do the same if name has been sent using a `POST` request:
 
 It even allows us to access all `POST` or `GET` variables by not passing anything through:
 
-	$getVars = $http->query->get();
+  $getVars = $http->query->get();
 
 The same will work with `POST`.
 
@@ -54,34 +54,34 @@ HttpBase makes good use of curl, and callbacks. Below is an example of how we co
 
 This will return:
 
-  {
-     "id": "4",
-     "name": "Mark Zuckerberg",
-     "first_name": "Mark",
-     "last_name": "Zuckerberg",
-     "link": "https://www.facebook.com/zuck",
-     "username": "zuck",
-     "gender": "male",
-     "locale": "en_US"
-  }
+    {
+       "id": "4",
+       "name": "Mark Zuckerberg",
+       "first_name": "Mark",
+       "last_name": "Zuckerberg",
+       "link": "https://www.facebook.com/zuck",
+       "username": "zuck",
+       "gender": "male",
+       "locale": "en_US"
+    }
 
 We can do the same using `POST`, `HEAD`, `PUT` and `DELETE` requests, and
 you can also add any params for the request as an array:
 
-  $http->make->get($url, array());
-  $http->make->post($url, array());
-  $http->make->head($url, array());
-  $http->make->put($url, array());
-  $http->make->delete($url, array());
+    $http->make->get($url, array());
+    $http->make->post($url, array());
+    $http->make->head($url, array());
+    $http->make->put($url, array());
+    $http->make->delete($url, array());
 
 ### Extended
 
 HttpBase makes good use of callbacks. This involves having an option third param
 and can be used like so:
 
-  $http->make->get('http://graph.facebok.com/zuck', array(), function($data) {
-    print_r(json_decode($data), true);
-  });
+    $http->make->get('http://graph.facebok.com/zuck', array(), function($data) {
+      print_r(json_decode($data), true);
+    });
 
 In the example above, we have make a request to Facebook, and used `print_r` to
 out put the response in the form of an array.
