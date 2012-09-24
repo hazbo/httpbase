@@ -23,6 +23,28 @@ class Make
 	 * @var Object
 	*/
 	private $curl;
+	
+	/**
+	 * - makeRequest
+	 * MAKES THE REQUEST BASED ON TYPE CALLED
+	 * THROUGH THE MAKE OBJECT
+	 * @param String
+	 * @param String
+	 * @param Array
+	 * @param Function
+	 */
+	private function makeRequest($type, $url, $vars = array(), $callback = NULL )
+	{
+		$types = array('head','get','post','put','delete');
+		if(! in_array($type, $types ) ) {
+			throw new \InvalidArgumentException("Request type " . $type . " was not recognised" );
+		}
+		$response = $this->curl->$type($url, $vars);
+		if (!is_null($callback)) {
+			return $callback($response);
+		}
+		return $response;
+	}
 
 	/**
 	 * - constructor
@@ -103,19 +125,6 @@ class Make
 	public function delete($url, $vars = array(), $callback = NULL)
 	{
 		return $this->makeRequest('delete', $url, $vars, $callback );
-	}
-	
-	private function makeRequest($type, $url, $vars = array(), $callback = NULL )
-	{
-		$types = array('head','get','post','put','delete');
-		if(! in_array($type, $types ) ) {
-			throw new \InvalidArgumentException("Request type " . $type . " was not recognised" );
-		}
-		$response = $this->curl->$type($url, $vars);
-		if (!is_null($callback)) {
-			return $callback($response);
-		}
-		return $response;
 	}
 }
 
