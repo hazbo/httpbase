@@ -33,11 +33,11 @@ class Make
 	 * @param Array
 	 * @param Function
 	 */
-	private function makeRequest($type, $url, $vars = array(), $callback = NULL )
+	private function makeRequest($type, $url, $vars = array(), $callback = NULL)
 	{
 		$types = array('head','get','post','put','delete');
 		if(! in_array($type, $types ) ) {
-			throw new \InvalidArgumentException("Request type " . $type . " was not recognised" );
+			throw new \InvalidArgumentException("Request type " . $type . " was not recognised");
 		}
 		$response = $this->curl->$type($url, $vars);
 		if (!is_null($callback)) {
