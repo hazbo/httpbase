@@ -46,11 +46,7 @@ class Make
 	 */
 	public function head($url, $vars = array(), $callback = NULL)
 	{
-		$response = $this->curl->head($url, $vars);
-		if (!is_null($callback)) {
-			return $callback($response);
-		}
-		return $response;
+		return $this->makeRequest('head', $url, $vars, $callback );
 	}
 
 	/**
@@ -64,11 +60,7 @@ class Make
 	 */
 	public function get($url, $vars = array(), $callback = NULL)
 	{
-		$response = $this->curl->get($url, $vars);
-		if (!is_null($callback)) {
-			return $callback($response);
-		}
-		return $response;
+		return $this->makeRequest('get', $url, $vars, $callback );
 	}
 
 	/**
@@ -82,11 +74,7 @@ class Make
 	 */
 	public function post($url, $vars = array(), $callback = NULL)
 	{
-		$response = $this->curl->post($url, $vars);
-		if (!is_null($callback)) {
-			return $callback($response);
-		}
-		return $response;
+		return $this->makeRequest('post', $url, $vars, $callback );
 	}
 
 	/**
@@ -100,11 +88,7 @@ class Make
 	 */
 	public function put($url, $vars = array(), $callback = NULL)
 	{
-		$response = $this->curl->put($url, $vars);
-		if (!is_null($callback)) {
-			return $callback($response);
-		}
-		return $response;
+		return $this->makeRequest('put', $url, $vars, $callback );
 	}
 
 	/**
@@ -118,7 +102,16 @@ class Make
 	 */
 	public function delete($url, $vars = array(), $callback = NULL)
 	{
-		$response = $this->curl->delete($url, $vars);
+		return $this->makeRequest('delete', $url, $vars, $callback );
+	}
+	
+	private function makeRequest($type, $url, $vars = array(), $callback = NULL )
+	{
+		$types = array('head','get','post','put','delete');
+		if(! in_array($type, $types ) ) {
+			throw new \InvalidArgumentException("Request type " . $type . " was not recognised" );
+		}
+		$response = $this->curl->$type($url, $vars);
 		if (!is_null($callback)) {
 			return $callback($response);
 		}
