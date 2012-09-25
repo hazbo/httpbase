@@ -20,9 +20,12 @@ class Make
 {
 	/**
 	 * CREATE CONTAINER FOR THE CURL OBJECT
+	 * AND THE JSON POST OBJECT
+	 * @var Object
 	 * @var Object
 	*/
 	private $curl;
+	private $json;
 	
 	/**
 	 * - makeRequest
@@ -55,14 +58,15 @@ class Make
 	public function __construct()
 	{
 		$this->curl = new Curl_Curl();
+		$this->json = new Json_Request();
 	}
 
 	/**
 	 * - head
 	 * CREATES A HEAD REQUEST USING
 	 * THE CURL OBJECT
-	 * @param string
-	 * @param array
+	 * @param String
+	 * @param Array
 	 * @param Function
 	 * @return String
 	 */
@@ -75,8 +79,8 @@ class Make
 	 * - get
 	 * CREATES A GET REQUEST USING
 	 * THE CURL OBJECT
-	 * @param string
-	 * @param array
+	 * @param String
+	 * @param Array
 	 * @param Function
 	 * @return String
 	 */
@@ -89,8 +93,8 @@ class Make
 	 * - post
 	 * CREATES A POST REQUEST USING
 	 * THE CURL OBJECT
-	 * @param string
-	 * @param array
+	 * @param String
+	 * @param Array
 	 * @param Function
 	 * @return String
 	 */
@@ -103,8 +107,8 @@ class Make
 	 * - put
 	 * CREATES A PUT REQUEST USING
 	 * THE CURL OBJECT
-	 * @param string
-	 * @param array
+	 * @param String
+	 * @param Array
 	 * @param Function
 	 * @return String
 	 */
@@ -117,14 +121,30 @@ class Make
 	 * - delete
 	 * CREATES A DELETE REQUEST USING
 	 * THE CURL OBJECT
-	 * @param string
-	 * @param array
+	 * @param String
+	 * @param Array
 	 * @param Function
 	 * @return String
 	 */
 	public function delete($url, $vars = array(), $callback = NULL)
 	{
 		return $this->makeRequest('delete', $url, $vars, $callback );
+	}
+
+	/**
+	 * - postJson
+	 * ALLOWS YOU TO POST A JSON
+	 * STRING TO A URL USING POST
+	 * @param String
+	 * @param Array/JSON
+	 * @return String
+	 */
+	public function postJson($url, $data)
+	{
+		if (is_array($data)) {
+			$data = json_encode($data);
+		}
+		return $this->json->post($url, $data);
 	}
 }
 
