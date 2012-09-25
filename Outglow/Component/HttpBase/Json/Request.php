@@ -29,10 +29,10 @@ class Json_Request
 	public function post($url, $jsonData)
 	{
 		$stream = curl_init($url);
-		curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");                                                                     
-		curl_setopt($ch, CURLOPT_POSTFIELDS, $jsonData);                                                                  
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);                                                                      
-		curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+		curl_setopt($stream, CURLOPT_CUSTOMREQUEST, "POST");                                                                     
+		curl_setopt($stream, CURLOPT_POSTFIELDS, $jsonData);                                                                  
+		curl_setopt($stream, CURLOPT_RETURNTRANSFER, true);                                                                      
+		curl_setopt($stream, CURLOPT_HTTPHEADER, array(
 		    'Content-Type: application/json',                                                                                
 		    'Content-Length: ' . strlen($jsonData))                                                                       
 		);
