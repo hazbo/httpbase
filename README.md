@@ -1,6 +1,6 @@
-# Http Base
+### This project is no longer in development.
 
-Community is a small and simple dependency injection container for PHP 5.3.0 +
+# Http Base
 
   - PSR-0 compliant
   - Easy to use
